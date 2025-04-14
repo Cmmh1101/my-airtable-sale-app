@@ -14,13 +14,14 @@ const Gallery: React.FC<GalleryProps> = ({ product }) => {
     <div className="w-full">
       {product.Images?.map((image, i) => {
         return (
-          <Image
-            src={image.url}
-            alt={product.Name}
-            className="rounded"
-            width={180}
-            height={38}
-            priority
+            <Image
+                key={`img-${i}`}
+                src={image.url}
+                alt={product.Name}
+                className="rounded"
+                width={180}
+                height={38}
+                priority
           />
         );
       })}
