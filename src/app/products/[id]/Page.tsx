@@ -1,10 +1,10 @@
 import BackButton from "@/components/components/BackButton";
+import ContactPage from "@/components/components/ContactForm";
 import IProduct from "@/components/interfaces";
 import { getProducts } from "@/components/lib/airtable";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import ContactPage from "../../contact/page";
 
 const ProductDetailPage = async ({ params }: { params: { id: string } }) => {
   const products = await getProducts();
