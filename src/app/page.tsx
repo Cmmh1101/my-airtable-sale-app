@@ -1,4 +1,3 @@
-import Image from "next/image";
 import ProductPage from "./products/page";
 import Link from "next/link";
 

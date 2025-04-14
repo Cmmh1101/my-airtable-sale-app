@@ -36,7 +36,7 @@ export const ProductsProvider = ({ children }: { children: React.ReactNode }) =>
         } else {
           setError(data.error || 'Failed to fetch products');
         }
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error('Fetch error:', err);
         setError('Something went wrong.');
       } finally {
