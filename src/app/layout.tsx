@@ -27,11 +27,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
       >
         <ProductsProvider>
           <Header />
           {children}
+          {/* <footer className="w-100vw row-start-3 flex gap-[24px] flex-wrap items-center justify-center absolute bottom-0 mx-auto">
+        <Link
+          href="/"
+          className="text-3xl font-bold text-pink-600 tracking-wide"
+        >
+          🏷️ Moving Sale
+        </Link>
+      </footer> */}
         </ProductsProvider>
       </body>
     </html>

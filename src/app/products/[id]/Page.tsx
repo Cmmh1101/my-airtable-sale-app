@@ -4,6 +4,7 @@ import { getProducts } from "@/components/lib/airtable";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import ContactPage from "../../contact/page";
 
 const ProductDetailPage = async ({ params }: { params: { id: string } }) => {
   const products = await getProducts();
@@ -19,7 +20,7 @@ const ProductDetailPage = async ({ params }: { params: { id: string } }) => {
           return (
             <p
               key={`category-${i}`}
-              className="inline-block mt-2 px-4 py-1 rounded-full bg-gray-300 text-black mb-3"
+              className="inline-block mt-2 px-4 py-1 mx-1 rounded-full bg-gray-300 text-black mb-3"
             >
               {cat}
             </p>
@@ -39,7 +40,7 @@ const ProductDetailPage = async ({ params }: { params: { id: string } }) => {
                     src={img.url}
                     alt={`${product.Name} image ${i + 1}`}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110 group-hover:brightness-110"
                   />
                 </div>
               )
@@ -61,6 +62,8 @@ const ProductDetailPage = async ({ params }: { params: { id: string } }) => {
         >
           {product.Status}
         </p>
+        {/* contact */}
+        <ContactPage name={product.Name} />
       </article>
     </main>
   );

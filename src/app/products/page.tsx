@@ -26,7 +26,7 @@ const ProductPage = () => {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh]">
-        <video src="/spinner.webm" autoPlay loop muted className="w-24 h-24" />
+        <video src="../spinner.webm" autoPlay loop muted className="w-24 h-24" />
         <p className="mt-4 text-gray-500">Loading products...</p>
       </div>
     );
