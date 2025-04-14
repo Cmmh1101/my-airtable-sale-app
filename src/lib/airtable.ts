@@ -1,7 +1,7 @@
 export async function getProducts() {
-    const baseId = process.env.AIRTABLE_BASE_ID
-    const tableId = process.env.TABLE_ID
-    const token = process.env.AIRTABLE_TOKEN
+    const baseId = process.env.NEXT_PUBLIC_AIRTABLE_BASE_ID
+    const tableId = process.env.NEXT_PUBLIC_TABLE_ID
+    const token = process.env.NEXT_PUBLIC_AIRTABLE_TOKEN
   
     const url = `https://api.airtable.com/v0/${baseId}/${tableId}`;
 
