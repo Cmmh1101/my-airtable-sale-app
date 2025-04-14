@@ -1,46 +1,50 @@
-"use client";
-/* eslint-disable @typescript-eslint/no-explicit-any */
+'use client';
 
-import { createContext, useContext, useEffect, useState } from "react";
-import { getProducts } from "@/components/lib/airtable";
-import IProduct from "@/components/interfaces";
+import { createContext, useContext, useEffect, useState } from 'react';
+import IProduct from './interfaces';
 
-interface ProductsContextProps {
+interface ProductsContextType {
   products: IProduct[];
   categories: string[];
   loading: boolean;
   error: string | null;
 }
 
-const ProductsContext = createContext<ProductsContextProps | null>(null);
+const ProductsContext = createContext<ProductsContextType | undefined>(undefined);
 
-export const ProductsProvider = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+export const ProductsProvider = ({ children }: { children: React.ReactNode }) => {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetch = async () => {
+    const fetchProducts = async () => {
       try {
-        const data = await getProducts();
-        setProducts(data);
-        const catSet = new Set<string>();
-        data.forEach((p: IProduct) =>
-          p.Category?.forEach((c: string) => catSet.add(c))
-        );
-        setCategories(Array.from(catSet));
-      } catch (e: any) {
-        setError(e.message);
+        const res = await fetch('/api/products');
+        const data = await res.json();
+
+        if (res.ok) {
+          setProducts(data.products);
+
+          const uniqueCategories = new Set<string>();
+          data.products.forEach((prod: IProduct) =>
+            prod.Category?.forEach((cat: string) => uniqueCategories.add(cat))
+          );
+
+          setCategories(Array.from(uniqueCategories));
+        } else {
+          setError(data.error || 'Failed to fetch products');
+        }
+      } catch (err: any) {
+        console.error('Fetch error:', err);
+        setError('Something went wrong.');
       } finally {
         setLoading(false);
       }
     };
-    fetch();
+
+    fetchProducts();
   }, []);
 
   return (
@@ -50,9 +54,10 @@ export const ProductsProvider = ({
   );
 };
 
-export const useProducts = () => {
+export const useProducts = (): ProductsContextType => {
   const context = useContext(ProductsContext);
-  if (!context)
-    throw new Error("useProducts must be used within a ProductsProvider");
+  if (!context) {
+    throw new Error('useProducts must be used within a ProductsProvider');
+  }
   return context;
 };

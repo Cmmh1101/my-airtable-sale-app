@@ -33,7 +33,7 @@ const ProductPage = () => {
   }
 
   return (
-    <main className="p-6v main-wrapper">
+    <main className="p-6v flex flex-col align-top main-wrapper">
       <div className="flex flex-wrap gap-2 mb-6">
         {categories.map((cat) => {
           const isActive = activeTags.includes(cat);
