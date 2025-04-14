@@ -26,7 +26,7 @@ const ProductPage = () => {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <main className="p-6">
+    <main className="p-6v main-wrapper">
       <div className="flex flex-wrap gap-2 mb-6">
         {categories.map((cat) => {
           const isActive = activeTags.includes(cat);
@@ -48,7 +48,7 @@ const ProductPage = () => {
       <h1 className="text-2xl font-bold mb-4">Products</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {filteredProducts.map((product: IProduct) => (
-          <Link key={product.id} href={`/products/${product.id}`}>
+          <Link key={product.id} href={`/products/${product.id}`} className="product-box">
             <div
               key={product.id}
               className="p-4 border rounded shadow flex flex-col justify-between"
