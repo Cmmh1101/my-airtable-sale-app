@@ -1,5 +1,5 @@
 import BackButton from "@/components/components/BackButton";
-import ContactPage from "@/components/components/ContactForm";
+import ContactForm from "@/components/components/ContactForm";
 import IProduct from "@/components/interfaces";
 import { getProducts } from "@/components/lib/airtable";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
@@ -63,7 +63,7 @@ const ProductDetailPage = async ({ params }: { params: { id: string } }) => {
           {product.Status}
         </p>
         {/* contact */}
-        <ContactPage name={product.Name} />
+        <ContactForm name={product.Name} />
       </article>
     </main>
   );

@@ -6,7 +6,7 @@ interface IProdDetail {
     name?: string
 }
 
-const ContactPage: React.FC<IProdDetail> = ({ name }) => {
+const ContactForm: React.FC<IProdDetail> = ({ name }) => {
   const [form, setForm] = useState({ name: '', email: '', message: name ? `I'm interested in the ${name}, is it still available?` : '' });
   const [status, setStatus] = useState('');
 
@@ -72,4 +72,4 @@ const ContactPage: React.FC<IProdDetail> = ({ name }) => {
   );
 }
 
-export default ContactPage
+export default ContactForm
