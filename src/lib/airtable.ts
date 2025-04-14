@@ -21,7 +21,7 @@ export async function getProducts() {
 
   const data = await res.json();
 
-  return data.records.map((record: { id: any; fields: any }) => ({
+  return data.records.map((record: { id: string; fields: Record<string, unknown> }) => ({
     id: record.id,
     ...record.fields,
   }));
