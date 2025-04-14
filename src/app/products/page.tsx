@@ -23,7 +23,14 @@ const ProductPage = () => {
           product.Category?.some((cat: string) => activeTags.includes(cat))
         );
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[60vh]">
+        <video src="/spinner.webm" autoPlay loop muted className="w-24 h-24" />
+        <p className="mt-4 text-gray-500">Loading products...</p>
+      </div>
+    );
+  }
 
   return (
     <main className="p-6v main-wrapper">
@@ -46,9 +53,13 @@ const ProductPage = () => {
         })}
       </div>
       <h1 className="text-2xl font-bold mb-4">Products</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in">
         {filteredProducts.map((product: IProduct) => (
-          <Link key={product.id} href={`/products/${product.id}`} className="product-box">
+          <Link
+            key={product.id}
+            href={`/products/${product.id}`}
+            className="product-box"
+          >
             <div
               key={product.id}
               className="p-4 border rounded shadow flex flex-col justify-between"
