@@ -10,7 +10,7 @@ const BackButton = () => {
       onClick={() => setSelectedProduct(undefined)}
       className="text-blue-500 hover:cursor-pointer underline hover:text-blue-700 mb-10"
     >
-      ← Back
+      ← Back To Products
     </button>
   );
 };
