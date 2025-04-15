@@ -2,26 +2,18 @@
 
 import BackButton from "@/components/components/BackButton";
 import ContactForm from "@/components/components/ContactForm";
-import IProduct from "@/components/interfaces";
 import { useProducts } from "@/components/ProductContext";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
-import { notFound, useParams } from "next/navigation";
 
-const ProductDetailPage = () => {
-  const { id } = useParams(); // works only in 'use client'
-  const { products } = useProducts();
-  const product: IProduct | undefined = products?.find(
-    (p: IProduct | undefined) => p?.id === id
-  );
-
-  if (!product) return notFound();
+const SingleProduct = () => {
+    const { selectedProduct } = useProducts()
 
   return (
     <main className="p-6 max-w-4xl mx-auto">
       <BackButton />
       <article>
-        {product.Category.map((cat, i) => {
+        {selectedProduct?.Category.map((cat, i) => {
           return (
             <p
               key={`category-${i}`}
@@ -31,11 +23,11 @@ const ProductDetailPage = () => {
             </p>
           );
         })}
-        <h1 className="text-3xl font-bold mb-4">{product.Name}</h1>
+        <h1 className="text-3xl font-bold mb-4">{selectedProduct?.Name}</h1>
         {/* Image Gallery or larger image */}
-        {product.Images?.length > 0 && (
+        {selectedProduct?.Images?.length! > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-            {product.Images.map(
+            {selectedProduct?.Images?.map(
               (img: { url: string | StaticImport }, i: number) => (
                 <div
                   key={i}
@@ -43,7 +35,7 @@ const ProductDetailPage = () => {
                 >
                   <Image
                     src={img.url}
-                    alt={`${product.Name} image ${i + 1}`}
+                    alt={`${selectedProduct?.Name} image ${i + 1}`}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110 group-hover:brightness-110"
                   />
@@ -54,24 +46,24 @@ const ProductDetailPage = () => {
         )}
 
         {/* Product Description and Info */}
-        <p className="text-lg text-white-700 mb-4">{product.Description}</p>
-        <p className="text-xl font-bold">Price: ${product.Price}</p>
+        <p className="text-lg text-white-700 mb-4">{selectedProduct?.Description}</p>
+        <p className="text-xl font-bold">Price: ${selectedProduct?.Price}</p>
         <p
           className={`inline-block mt-2 px-4 py-1 rounded-full ${
-            product.Status === "Available"
+            selectedProduct?.Status === "Available"
               ? "bg-green-500 text-white"
-              : product.Status === "Pending"
+              : selectedProduct?.Status === "Pending"
               ? "bg-yellow-300 text-black"
               : "bg-red-400 text-white"
           }`}
         >
-          {product.Status}
+          {selectedProduct?.Status}
         </p>
         {/* contact */}
-        <ContactForm name={product.Name} />
+        <ContactForm name={selectedProduct?.Name} />
       </article>
     </main>
   );
 };
 
-export default ProductDetailPage;
+export default SingleProduct;

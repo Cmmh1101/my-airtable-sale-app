@@ -5,6 +5,8 @@ import IProduct from './interfaces';
 
 interface ProductsContextType {
   products: IProduct[] | undefined;
+  selectedProduct: IProduct | undefined
+  setSelectedProduct: (value: IProduct | undefined) => void
   categories: string[];
   loading: boolean;
   error: string | null;
@@ -17,6 +19,7 @@ export const ProductsProvider = ({ children }: { children: React.ReactNode }) =>
   const [categories, setCategories] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<IProduct | undefined>(undefined)
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -48,7 +51,7 @@ export const ProductsProvider = ({ children }: { children: React.ReactNode }) =>
   }, []);
 
   return (
-    <ProductsContext.Provider value={{ products, categories, loading, error }}>
+    <ProductsContext.Provider value={{ products, categories, loading, error, selectedProduct, setSelectedProduct }}>
       {children}
     </ProductsContext.Provider>
   );
