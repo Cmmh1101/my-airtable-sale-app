@@ -65,7 +65,7 @@ const ProductPage = () => {
             {filteredProducts?.map((product: IProduct) => (
               <div
                 key={product.id}
-                className="product-box"
+                className="product-box hover:cursor-pointer"
                 onClick={() => setSelectedProduct(product)}
               >
                 <div
