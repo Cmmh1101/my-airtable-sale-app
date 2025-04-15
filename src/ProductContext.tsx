@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import IProduct from './interfaces';
 
 interface ProductsContextType {
-  products: IProduct[];
+  products: IProduct[] | undefined;
   categories: string[];
   loading: boolean;
   error: string | null;

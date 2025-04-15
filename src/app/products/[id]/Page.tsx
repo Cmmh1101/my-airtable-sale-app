@@ -1,14 +1,14 @@
 import BackButton from "@/components/components/BackButton";
 import ContactForm from "@/components/components/ContactForm";
 import IProduct from "@/components/interfaces";
-import { getProducts } from "@/components/lib/airtable";
+import { useProducts } from "@/components/ProductContext";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
 const ProductDetailPage = async ({ params }: { params: { id: string } }) => {
-  const products = await getProducts();
-  const product: IProduct = products.find((p: IProduct) => p.id === params.id);
+  const { products } = useProducts();
+  const product: IProduct | undefined = products?.find((p: IProduct | undefined) => p?.id === params.id);
 
   if (!product) return notFound();
 

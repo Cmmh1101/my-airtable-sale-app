@@ -19,7 +19,7 @@ const ProductPage = () => {
   const filteredProducts =
     activeTags.length === 0
       ? products
-      : products.filter((product) =>
+      : products?.filter((product) =>
           product.Category?.some((cat: string) => activeTags.includes(cat))
         );
 
@@ -54,7 +54,7 @@ const ProductPage = () => {
       </div>
       <h1 className="text-2xl font-bold mb-4">Products</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in">
-        {filteredProducts.map((product: IProduct) => (
+        {filteredProducts?.map((product: IProduct) => (
           <Link
             key={product.id}
             href={`/products/${product.id}`}
