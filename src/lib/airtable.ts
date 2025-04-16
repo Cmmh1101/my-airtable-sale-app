@@ -12,8 +12,8 @@ export async function getProducts(isServer = false) {
     },
   };
 
-  if (isServer) {
-    (options as any).next = { revalidate: 60 };
+  if (isServer && typeof options === 'object' && options !== null) {
+    (options as Record<string, unknown>).next = { revalidate: 60 };
   }
 
   const res = await fetch(url, options);
