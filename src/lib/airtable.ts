@@ -1,4 +1,4 @@
-export async function getProducts(isServer = false) {
+export async function getProducts(fetchFresh = false) {
   const baseId = process.env.NEXT_PUBLIC_AIRTABLE_BASE_ID!;
   const tableId = process.env.NEXT_PUBLIC_TABLE_ID!;
   const token = process.env.NEXT_PUBLIC_AIRTABLE_TOKEN!;
@@ -12,8 +12,11 @@ export async function getProducts(isServer = false) {
     },
   };
 
-  if (isServer && typeof options === 'object' && options !== null) {
-    (options as Record<string, unknown>).next = { revalidate: 60 };
+  // Avoid revalidation caching if we're showing image URLs
+  // You could allow it only if not showing images
+  if (!fetchFresh && typeof window === 'undefined') {
+    // ONLY enable revalidate if you know it's safe (i.e., no image URLs)
+    // (options as Record<string, unknown>).next = { revalidate: 60 };
   }
 
   const res = await fetch(url, options);
