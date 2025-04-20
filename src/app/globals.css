@@ -27,5 +27,6 @@ body {
 
 .product-box {
   width: 335px;
-  min-height: 335px;
+  height: auto;
+  min-height: 400px!important;
 }

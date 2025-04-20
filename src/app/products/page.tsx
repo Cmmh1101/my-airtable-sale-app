@@ -39,7 +39,7 @@ const ProductPage = () => {
   }
 
   return (
-    <main className="p-6v flex flex-col align-top main-wrapper">
+    <main className="p-6 flex flex-col justify-center align-top main-wrapper">
       {selectedProduct === undefined ? (
         <>
           <div className="flex flex-wrap gap-2 mb-6">
@@ -49,6 +49,7 @@ const ProductPage = () => {
                 <button
                   key={cat}
                   onClick={() => toggleTag(cat)}
+                  title="Click to add/remove category filter"
                   className={`px-3 py-1 text-sm rounded-full border transition hover:cursor-pointer ${
                     isActive
                       ? "bg-blue-600 text-white border-blue-600"
@@ -61,16 +62,12 @@ const ProductPage = () => {
             })}
           </div>
           <h1 className="text-2xl font-bold mb-4">Products</h1>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in">
+          <div className="flex flex-wrap justify-center animate-fade-in">
             {filteredProducts?.map((product: IProduct) => (
-              <div
-                key={product.id}
-                className="product-box hover:cursor-pointer"
-                onClick={() => setSelectedProduct(product)}
-              >
                 <div
                   key={product.id}
-                  className="p-4 border rounded shadow flex flex-col justify-between"
+                  className="product-box m-3 hover:cursor-pointer p-4 border rounded shadow flex flex-col justify-between"
+                  onClick={() => setSelectedProduct(product)}
                 >
                   <div>
                     <h2 className="text-xl capitalize font-semibold">
@@ -104,7 +101,6 @@ const ProductPage = () => {
                     </p>
                   </div>
                 </div>
-              </div>
             ))}
           </div>
         </>
