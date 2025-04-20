@@ -24,7 +24,7 @@ const SingleProduct = () => {
           );
         })}
         <h1 className="text-3xl font-bold mb-4">{selectedProduct?.Name}</h1>
-        {/* Image Gallery or larger image */}
+        {/* Image Gallery */}
         {!!selectedProduct?.Images?.length && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
             {selectedProduct?.Images?.map(
