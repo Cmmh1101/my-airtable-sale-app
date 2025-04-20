@@ -42,7 +42,7 @@ const ProductPage = () => {
     <main className="p-6 flex flex-col justify-center align-top main-wrapper">
       {selectedProduct === undefined ? (
         <>
-          <div className="flex flex-wrap gap-2 mb-6">
+          <div className="flex flex-wrap justify-center gap-2 mb-6">
             {categories.map((cat) => {
               const isActive = activeTags.includes(cat);
               return (
@@ -61,7 +61,7 @@ const ProductPage = () => {
               );
             })}
           </div>
-          <h1 className="text-2xl font-bold mb-4">Products</h1>
+          {/* <h1 className="text-2xl font-bold mb-4">Products</h1> */}
           <div className="flex flex-wrap justify-center animate-fade-in">
             {filteredProducts?.map((product: IProduct) => (
                 <div
