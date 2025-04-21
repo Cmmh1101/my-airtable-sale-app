@@ -61,7 +61,6 @@ const ProductPage = () => {
               );
             })}
           </div>
-          {/* <h1 className="text-2xl font-bold mb-4">Products</h1> */}
           <div className="flex flex-wrap justify-center animate-fade-in">
             {filteredProducts?.map((product: IProduct) => (
                 <div
