@@ -12,10 +12,6 @@ const Header = () => {
           🏷️ Moving Sale
         </Link>
         <p>Spring Hill, TN</p>
-        {/* <nav className="space-x-4 text-sm font-medium">
-          <Link href="/" className="hover:text-pink-600 transition">Home</Link>
-          <Link href="/contact" className="hover:text-pink-600 transition">Contact</Link>
-        </nav> */}
       </div>
     </header>
   );
