@@ -11,6 +11,7 @@ const Header = () => {
         <Link href="/" onClick={() => setSelectedProduct(undefined)} className="text-3xl font-bold text-pink-600 tracking-wide">
           🏷️ Moving Sale
         </Link>
+        {/* location */}
         <p>Spring Hill, TN</p>
       </div>
     </header>
