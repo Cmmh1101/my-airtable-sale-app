@@ -5,13 +5,6 @@ export async function getProducts(fetchFresh = false) {
 
   const url = `https://api.airtable.com/v0/${baseId}/${tableId}`;
 
-  const options: RequestInit = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-  };
-
   // Avoid revalidation caching if we're showing image URLs
   // You could allow it only if not showing images
   if (!fetchFresh && typeof window === 'undefined') {
@@ -19,7 +12,14 @@ export async function getProducts(fetchFresh = false) {
     // (options as Record<string, unknown>).next = { revalidate: 60 };
   }
 
-  const res = await fetch(url, options);
+  const res = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    // Ensure no caching for expiring image URLs
+    cache: 'no-store',
+  });
 
   if (!res.ok) {
     const errorText = await res.text();
