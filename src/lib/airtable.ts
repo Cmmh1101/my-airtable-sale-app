@@ -17,7 +17,7 @@ export async function getProducts(fetchFresh = false) {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
-    // Ensure no cachingfor expiring image URLs
+    // Ensure no caching for expiring image URLs
     cache: 'no-store',
   });
 
