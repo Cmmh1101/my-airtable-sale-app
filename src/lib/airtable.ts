@@ -6,7 +6,6 @@ export async function getProducts(fetchFresh = false) {
   const url = `https://api.airtable.com/v0/${baseId}/${tableId}`;
 
   // Avoid revalidation caching if we're showing image URLs
-  // You could allow it only if not showing images
   if (!fetchFresh && typeof window === 'undefined') {
     // ONLY enable revalidate if you know it's safe (i.e., no image URLs)
     // (options as Record<string, unknown>).next = { revalidate: 60 };
