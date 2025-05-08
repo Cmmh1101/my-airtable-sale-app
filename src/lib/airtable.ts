@@ -7,7 +7,7 @@ export async function getProducts(fetchFresh = false) {
 
   // Avoid revalidation caching if we're showing image URLs
   if (!fetchFresh && typeof window === 'undefined') {
-    // ONLY enable revalidate if you know it's safe (i.e., no image URLs)
+    // ONLY enable revalidate if you know it's safe (i.e., no image URLs )
     // (options as Record<string, unknown>).next = { revalidate: 60 };
   }
 
