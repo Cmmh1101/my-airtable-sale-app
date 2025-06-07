@@ -5,6 +5,7 @@ import IProduct from './interfaces';
 
 interface ProductsContextType {
   products: IProduct[] | undefined;
+  setProducts: (value: IProduct[]) => void
   selectedProduct: IProduct | undefined
   setSelectedProduct: (value: IProduct | undefined) => void
   categories: string[];
@@ -28,10 +29,11 @@ export const ProductsProvider = ({ children }: { children: React.ReactNode }) =>
         const data = await res.json();
 
         if (res.ok) {
-          setProducts(data.products);
+          const availableProducts = data.products?.filter((prod: IProduct) => prod.Status == "Available")
+          setProducts(availableProducts);
 
           const uniqueCategories = new Set<string>();
-          data.products.forEach((prod: IProduct) =>
+          availableProducts.forEach((prod: IProduct) =>
             prod.Category?.forEach((cat: string) => uniqueCategories.add(cat))
           );
 
@@ -51,7 +53,7 @@ export const ProductsProvider = ({ children }: { children: React.ReactNode }) =>
   }, []);
 
   return (
-    <ProductsContext.Provider value={{ products, categories, loading, error, selectedProduct, setSelectedProduct }}>
+    <ProductsContext.Provider value={{ products, setProducts, categories, loading, error, selectedProduct, setSelectedProduct }}>
       {children}
     </ProductsContext.Provider>
   );
