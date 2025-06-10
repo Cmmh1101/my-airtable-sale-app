@@ -9,7 +9,7 @@ import SingleProduct from "@/components/components/SingleProduct";
 const ProductPage = () => {
   const { products, selectedProduct, setSelectedProduct, categories, loading } = useProducts();
   const [activeTags, setActiveTags] = useState<string[]>([]);
-// toggle tag 
+// toggle  tag 
   const toggleTag = (tag: string) => {
     setActiveTags((prev) =>
       prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
